@@ -17,7 +17,7 @@ public class BankGrpcClient2 {
         BankServiceGrpc.BankServiceStub serviceStub= BankServiceGrpc.newStub(managedChannel);
         Bank.ConvertCurrencyRequest request= Bank.ConvertCurrencyRequest.newBuilder()
                 .setCurrencyFrom("MAD")
-                .setAmount(8695.652173913043)
+                .setAmount(8695.652173913043) //you can use Scanner.nextDouble()
                 .setCurrencyTo("DOLLAR")
                 .build();
         serviceStub.convert(request, new StreamObserver<Bank.ConvertCurrencyResponse>() {

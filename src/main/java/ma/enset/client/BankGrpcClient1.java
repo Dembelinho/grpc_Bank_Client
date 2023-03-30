@@ -17,7 +17,7 @@ public class BankGrpcClient1 {
         // Prepare/Build a request Msg
         Bank.ConvertCurrencyRequest request= Bank.ConvertCurrencyRequest.newBuilder()
                 .setCurrencyFrom("MAD")
-                .setAmount(896325)
+                .setAmount(896325) //you can use Scanner.nextDouble()
                 .setCurrencyTo("DOLLAR")
                 .build();
         //Get & Print response

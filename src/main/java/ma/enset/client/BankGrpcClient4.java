@@ -15,13 +15,8 @@ public class BankGrpcClient4 {
         ManagedChannel managedChannel= ManagedChannelBuilder.forAddress("localhost",5555)
                 .usePlaintext()
                 .build();
-        BankServiceGrpc.BankServiceStub asyncStub=
-                BankServiceGrpc.newStub(managedChannel);
-        Bank.ConvertCurrencyRequest request= Bank.ConvertCurrencyRequest.newBuilder()
-                .setCurrencyFrom("MAD")
-                .setAmount(8963.05)
-                .setCurrencyTo("DOLLAR")
-                .build();
+
+        BankServiceGrpc.BankServiceStub asyncStub= BankServiceGrpc.newStub(managedChannel);
 
         StreamObserver<Bank.ConvertCurrencyRequest> performStream =
                 asyncStub.performStream(new StreamObserver<Bank.ConvertCurrencyResponse>() {
@@ -48,10 +43,10 @@ public class BankGrpcClient4 {
             @Override
             public void run() {
                 Bank.ConvertCurrencyRequest currencyRequest= Bank.ConvertCurrencyRequest.newBuilder()
-                        .setAmount(Math.random()*5000)
+                        .setAmount(Math.random()*5000) //you can use Scanner.nextDouble()
                         .build();
                 performStream.onNext(currencyRequest);
-                System.out.println("==============> counter = "+ cpt);
+                System.out.println("========> counter = "+ cpt);
                 ++cpt;
                 if (cpt==20){
                     performStream.onCompleted();
